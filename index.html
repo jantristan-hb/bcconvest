@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BC Convest GmbH — Consulting & Investments</title>
+<meta name="description" content="BC Convest is a Hamburg-based holding and advisory company investing in advertising technology, communications and AI.">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --navy: #003366;
+    --deep: #001428;
+    --steel: #5B9BD5;
+    --ice: #7BB8E8;
+  }
+  body {
+    font-family: Verdana, Geneva, sans-serif;
+    color: #1A1A1A;
+    background: #FAFBFC;
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ==================== HERO ==================== */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    background: #FAFBFC;
+  }
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 64px 80px 80px;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-right {
+    position: relative;
+    background: linear-gradient(155deg, #001830 0%, #003366 45%, #004a8a 100%);
+    overflow: hidden;
+  }
+
+  /* --- Right panel: animated background --- */
+  .hero-right .watermark {
+    position: absolute;
+    font-size: 440px;
+    font-weight: bold;
+    color: rgba(255,255,255,0.05);
+    letter-spacing: 20px;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    user-select: none;
+    transition: transform 0.6s ease-out;
+  }
+  .hero-right:hover .watermark {
+    transform: translate(-50%, -50%) scale(1.03);
+  }
+  .hero-right .stripe {
+    position: absolute;
+    width: 200%; height: 200px;
+    background: linear-gradient(180deg, rgba(91,155,213,0.1) 0%, transparent 100%);
+    transform: rotate(-35deg);
+    top: 10%; left: -50%;
+  }
+  .hero-right .stripe-2 {
+    position: absolute;
+    width: 200%; height: 100px;
+    background: linear-gradient(180deg, rgba(91,155,213,0.06) 0%, transparent 100%);
+    transform: rotate(-35deg);
+    top: 52%; left: -50%;
+  }
+  .hero-right .geo {
+    position: absolute;
+    border: 1.5px solid rgba(91,155,213,0.18);
+    transition: all 0.8s ease;
+  }
+  .hero-right:hover .geo { border-color: rgba(91,155,213,0.35); }
+  .hero-right .geo-1 { width: 340px; height: 340px; top: 3%; right: -60px; transform: rotate(15deg); }
+  .hero-right .geo-2 { width: 240px; height: 240px; bottom: 10%; left: 6%; transform: rotate(-20deg); }
+  .hero-right .geo-3 {
+    width: 160px; height: 160px; top: 36%; left: 26%;
+    transform: rotate(45deg);
+    background: rgba(91,155,213,0.04);
+    border-color: rgba(255,255,255,0.08);
+  }
+  .hero-right .dot {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--steel);
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
+  .hero-right:hover .dot { transform: scale(1.5); }
+  .hero-right .dot-1 { width: 6px; height: 6px; top: 22%; left: 20%; opacity: 0.6; }
+  .hero-right .dot-2 { width: 4px; height: 4px; top: 48%; right: 15%; opacity: 0.3; }
+  .hero-right .dot-3 { width: 6px; height: 6px; bottom: 35%; left: 45%; opacity: 0.5; }
+  .hero-right .dot-4 { width: 8px; height: 8px; top: 15%; right: 30%; opacity: 0.2; }
+  .hero-right .vline {
+    position: absolute;
+    width: 1px; height: 40%;
+    background: linear-gradient(to bottom, transparent, rgba(91,155,213,0.3), transparent);
+    left: 65%; top: 20%;
+  }
+  .hero-right .corner-tl {
+    position: absolute; top: 40px; left: 40px;
+    width: 60px; height: 60px;
+    border-top: 2px solid rgba(91,155,213,0.35);
+    border-left: 2px solid rgba(91,155,213,0.35);
+    transition: all 0.4s ease;
+  }
+  .hero-right .corner-br {
+    position: absolute; bottom: 40px; right: 40px;
+    width: 60px; height: 60px;
+    border-bottom: 2px solid rgba(91,155,213,0.35);
+    border-right: 2px solid rgba(91,155,213,0.35);
+    transition: all 0.4s ease;
+  }
+  .hero-right:hover .corner-tl, .hero-right:hover .corner-br {
+    width: 80px; height: 80px;
+    border-color: rgba(91,155,213,0.6);
+  }
+  .hero-stats {
+    position: absolute;
+    bottom: 60px; left: 48px;
+    z-index: 2;
+    display: flex; gap: 48px;
+  }
+  .hero-stat-num {
+    font-size: 42px;
+    font-weight: bold;
+    color: #FFFFFF;
+    line-height: 1;
+    text-shadow: 0 0 40px rgba(91,155,213,0.3);
+  }
+  .hero-stat-label {
+    font-size: 8px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+
+  /* --- Logo --- */
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 56px;
+  }
+  .logo-badge {
+    width: 66px; height: 66px;
+    background: var(--navy);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0,51,102,0.25);
+  }
+  .logo-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0,51,102,0.35);
+  }
+  .logo-badge span { font-size: 24px; font-weight: bold; color: #FFF; letter-spacing: 2px; }
+  .logo-right { display: flex; flex-direction: column; }
+  .logo-text { font-size: 26px; color: #1A1A1A; letter-spacing: 6px; }
+  .logo-tagline { font-size: 8px; color: #AAA; letter-spacing: 4px; text-transform: uppercase; margin-top: 3px; }
+
+  /* --- Hero content --- */
+  .hero h1 { font-size: 38px; font-weight: bold; color: #1A1A1A; line-height: 1.3; max-width: 480px; }
+  .hero h1 .accent { color: var(--navy); }
+  .hero .subtitle { font-size: 14px; color: #888; margin-top: 24px; line-height: 1.9; max-width: 420px; }
+  .hero .cta-line { margin-top: 48px; display: flex; align-items: center; gap: 16px; cursor: pointer; }
+  .cta-line .line { width: 40px; height: 1px; background: var(--navy); transition: width 0.3s ease; }
+  .cta-line:hover .line { width: 64px; }
+  .cta-line span { font-size: 10px; color: var(--navy); letter-spacing: 3px; text-transform: uppercase; font-weight: bold; }
+
+  /* ==================== SCROLL REVEAL ==================== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ==================== SECTIONS ==================== */
+  .container { max-width: 1000px; margin: 0 auto; padding: 0 48px; }
+  section { padding: 100px 0; }
+  .section-label {
+    font-size: 10px; font-weight: bold;
+    color: var(--steel);
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    margin-bottom: 48px;
+    position: relative;
+    padding-left: 28px;
+  }
+  .section-label::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 16px; height: 1px;
+    background: var(--steel);
+  }
+
+  /* ==================== PORTFOLIO ==================== */
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+  .portfolio-card {
+    background: #FFFFFF;
+    padding: 48px 40px;
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .portfolio-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 3px;
+    background: linear-gradient(90deg, var(--navy), var(--steel));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .portfolio-card:hover::before { transform: scaleX(1); }
+  .portfolio-card:hover {
+    background: var(--navy);
+    box-shadow: 0 20px 60px rgba(0,51,102,0.2);
+    transform: translateY(-6px);
+  }
+  .portfolio-card h3 {
+    font-size: 16px; font-weight: bold;
+    color: var(--navy);
+    margin-bottom: 4px;
+    letter-spacing: 1.5px;
+    transition: all 0.4s ease;
+  }
+  .portfolio-card:hover h3 {
+    color: #FFFFFF;
+    font-size: 20px;
+    letter-spacing: 3px;
+  }
+  .card-tag {
+    font-size: 9px; color: var(--steel);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: block;
+    transition: color 0.4s ease;
+  }
+  .portfolio-card:hover .card-tag { color: var(--ice); }
+  .portfolio-card p { font-size: 13px; color: #666; line-height: 1.9; transition: color 0.4s ease; }
+  .portfolio-card:hover p { color: rgba(255,255,255,0.55); }
+  /* Card number */
+  .portfolio-card .card-num {
+    position: absolute;
+    top: 20px; right: 24px;
+    font-size: 48px;
+    font-weight: bold;
+    color: rgba(0,51,102,0.04);
+    line-height: 1;
+    transition: all 0.4s ease;
+  }
+  .portfolio-card:hover .card-num { color: rgba(255,255,255,0.06); font-size: 56px; }
+
+  /* ==================== APPROACH ==================== */
+  .approach-section {
+    background: var(--navy);
+    padding: 120px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .approach-section::before {
+    content: 'BC';
+    position: absolute;
+    font-size: 350px;
+    font-weight: bold;
+    color: rgba(255,255,255,0.02);
+    letter-spacing: 20px;
+    right: -40px; top: 50%;
+    transform: translateY(-50%);
+    user-select: none;
+  }
+  .approach-section .section-label { color: rgba(255,255,255,0.3); }
+  .approach-section .section-label::before { background: rgba(255,255,255,0.15); }
+  .approach-inner { max-width: 640px; position: relative; z-index: 1; }
+  .approach-quote {
+    font-size: 30px; font-weight: bold;
+    color: #FFFFFF;
+    line-height: 1.45;
+    margin-bottom: 20px;
+  }
+  .approach-body { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.9; }
+  /* Decorative lines in approach */
+  .approach-section .deco-line {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(91,155,213,0.15), transparent);
+  }
+  .approach-section .deco-line-1 { width: 60%; top: 30px; right: 0; }
+  .approach-section .deco-line-2 { width: 40%; bottom: 40px; left: 0; }
+
+  /* ==================== TRACK RECORD ==================== */
+  .track-item {
+    display: flex;
+    gap: 40px;
+    padding: 40px 0;
+    border-bottom: 1px solid #ECECEC;
+    align-items: baseline;
+    transition: padding-left 0.3s ease;
+  }
+  .track-item:first-child { border-top: 1px solid #ECECEC; }
+  .track-item:hover { padding-left: 12px; }
+  .track-years {
+    font-size: 11px; color: var(--steel);
+    letter-spacing: 1px;
+    min-width: 100px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  .track-item:hover .track-years { color: var(--navy); }
+  .track-content { flex: 1; }
+  .track-name {
+    font-size: 17px; font-weight: bold; color: var(--navy); margin-bottom: 6px;
+    transition: all 0.3s ease;
+  }
+  .track-item:hover .track-name {
+    font-size: 22px;
+    letter-spacing: 1px;
+    color: var(--navy);
+  }
+  .track-desc { font-size: 13px; color: #666; line-height: 1.8; }
+  .track-exit {
+    display: inline-block;
+    font-size: 9px;
+    color: #999;
+    background: #F0F0F0;
+    padding: 4px 12px;
+    border-radius: 2px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-top: 12px;
+    transition: all 0.3s ease;
+  }
+  .track-item:hover .track-exit {
+    background: #E8ECF0;
+    color: #888;
+  }
+
+  /* ==================== FOOTER ==================== */
+  footer {
+    background: var(--deep);
+    padding: 64px 0;
+  }
+  .footer-top {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 40px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .footer-badge {
+    width: 44px; height: 44px;
+    background: var(--steel);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .footer-badge span { font-size: 16px; font-weight: bold; color: #FFF; letter-spacing: 2px; }
+  .footer-brand { font-size: 16px; color: #FFF; letter-spacing: 4px; }
+  .footer-grid { display: flex; justify-content: space-between; align-items: flex-start; }
+  footer p { font-size: 12px; color: rgba(255,255,255,0.3); line-height: 1.9; }
+  footer .footer-label {
+    font-size: 8px; color: rgba(255,255,255,0.15);
+    text-transform: uppercase; letter-spacing: 3px;
+    margin-bottom: 8px; display: block;
+  }
+  footer a { color: var(--steel); text-decoration: none; transition: color 0.2s; }
+  footer a:hover { color: #FFF; }
+
+  /* ==================== RESPONSIVE ==================== */
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 60px 28px; }
+    .hero-right { min-height: 320px; }
+    .hero h1 { font-size: 28px; }
+    .hero-stats { gap: 32px; left: 28px; bottom: 32px; }
+    .container { padding: 0 28px; }
+    .portfolio-grid { grid-template-columns: 1fr; }
+    .track-item { flex-direction: column; gap: 8px; }
+    .footer-grid { flex-direction: column; gap: 28px; }
+    .approach-quote { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== HERO ==================== -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="logo">
+      <div class="logo-badge"><span>BC</span></div>
+      <div class="logo-right">
+        <div class="logo-text">CONVEST</div>
+        <div class="logo-tagline">Consulting & Investments</div>
+      </div>
+    </div>
+    <h1>We invest in advertising, communications <span class="accent">and AI.</span></h1>
+    <p class="subtitle">Hamburg-based holding and advisory company. We build, invest in and advise businesses at the intersection of advertising technology, digital sovereignty, communications and artificial intelligence.</p>
+    <div class="cta-line" onclick="document.querySelector('#portfolio').scrollIntoView({behavior:'smooth'})">
+      <div class="line"></div>
+      <span>Explore Portfolio</span>
+    </div>
+  </div>
+  <div class="hero-right" id="heroRight">
+    <div class="watermark">BC</div>
+    <div class="stripe"></div>
+    <div class="stripe-2"></div>
+    <div class="geo geo-1"></div>
+    <div class="geo geo-2"></div>
+    <div class="geo geo-3"></div>
+    <div class="dot dot-1"></div>
+    <div class="dot dot-2"></div>
+    <div class="dot dot-3"></div>
+    <div class="dot dot-4"></div>
+    <div class="vline"></div>
+    <div class="corner-tl"></div>
+    <div class="corner-br"></div>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-num" data-target="20">0</div>
+        <div class="hero-stat-label">Years+</div>
+      </div>
+      <div>
+        <div class="hero-stat-num" data-target="2">0</div>
+        <div class="hero-stat-label">Exits</div>
+      </div>
+      <div>
+        <div class="hero-stat-num" data-target="4">0</div>
+        <div class="hero-stat-label">Active</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PORTFOLIO ==================== -->
+<section id="portfolio">
+  <div class="container">
+    <div class="section-label reveal">Active Portfolio</div>
+    <div class="portfolio-grid">
+      <div class="portfolio-card reveal reveal-delay-1">
+        <div class="card-num">01</div>
+        <h3>SOVEREIGN MEDIA</h3>
+        <span class="card-tag">Media / Public Sector</span>
+        <p>Media agency for international and institutional clients. Specialized in public sector, government and regulatory institutions. EU-native media infrastructure, TTPA-compliant, independent of US platform monopolies.</p>
+      </div>
+      <div class="portfolio-card reveal reveal-delay-2">
+        <div class="card-num">02</div>
+        <h3>DEHAZE</h3>
+        <span class="card-tag">HealthTech</span>
+        <p>HealthTech startup focused on digital health solutions. BC Convest is an early-stage investor supporting go-to-market strategy and scaling.</p>
+      </div>
+      <div class="portfolio-card reveal reveal-delay-3">
+        <div class="card-num">03</div>
+        <h3>AARNT BIOWORKS</h3>
+        <span class="card-tag">BioTech</span>
+        <p>BioTech company in the field of sustainable biological materials. Strategic investment focused on growth financing and network access.</p>
+      </div>
+      <div class="portfolio-card reveal reveal-delay-4">
+        <div class="card-num">04</div>
+        <h3>AI.FUND</h3>
+        <span class="card-tag">Venture / AI</span>
+        <p>Venture participation in building the "European AI Leaders". Investing in European AI companies to create a competitive alternative to US- and China-dominated AI ecosystems.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== APPROACH ==================== -->
+<div class="approach-section">
+  <div class="deco-line deco-line-1"></div>
+  <div class="deco-line deco-line-2"></div>
+  <div class="container">
+    <div class="section-label reveal">Approach</div>
+    <div class="approach-inner reveal">
+      <div class="approach-quote">We know how to build and scale.<br>And repeat.</div>
+      <p class="approach-body">Two exits, four active ventures, 20+ years in the game. We don't advise from the sidelines — we've built the companies, scaled the teams and closed the deals ourselves.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== TRACK RECORD ==================== -->
+<section>
+  <div class="container">
+    <div class="section-label reveal">Track Record</div>
+    <div class="track-item reveal">
+      <span class="track-years">2012 – 2026</span>
+      <div class="track-content">
+        <div class="track-name">klaro media GmbH</div>
+        <p class="track-desc">Built a specialized agency for data-driven, programmatic media planning and buying across international markets.</p>
+        <span class="track-exit">Exit to Auctus Capital & MAI Group</span>
+      </div>
+    </div>
+    <div class="track-item reveal reveal-delay-1">
+      <span class="track-years">2010 – 2012</span>
+      <div class="track-content">
+        <div class="track-name">upvalue GmbH</div>
+        <p class="track-desc">Founded a digital ad network and publisher monetization platform focused on performance-based display advertising.</p>
+        <span class="track-exit">Exit to Stroeer SE & Co. KGaA</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-badge"><span>BC</span></div>
+      <div class="footer-brand">CONVEST</div>
+    </div>
+    <div class="footer-grid">
+      <div>
+        <span class="footer-label">Company</span>
+        <p>BC Convest GmbH<br>Lohacker 33<br>25462 Rellingen<br>Germany</p>
+      </div>
+      <div>
+        <span class="footer-label">Registration</span>
+        <p>HRB 13023 PI<br>AG Pinneberg<br>USt-ID: DE269567376</p>
+      </div>
+      <div>
+        <span class="footer-label">Contact</span>
+        <p><a href="mailto:bc@bcconvest.de">bc@bcconvest.de</a><br>+49 171 687 57 67</p>
+      </div>
+      <div>
+        <span class="footer-label">Legal</span>
+        <p><a href="impressum.html">Impressum</a><br><a href="datenschutz.html">Datenschutz</a></p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Counter animation
+function animateCounters() {
+  document.querySelectorAll('[data-target]').forEach(el => {
+    const target = +el.dataset.target;
+    const duration = 1200;
+    const start = performance.now();
+    function step(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(eased * target);
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  });
+}
+setTimeout(animateCounters, 400);
+
+// Parallax on mouse move in hero right panel
+const heroRight = document.getElementById('heroRight');
+heroRight.addEventListener('mousemove', (e) => {
+  const rect = heroRight.getBoundingClientRect();
+  const x = (e.clientX - rect.left) / rect.width - 0.5;
+  const y = (e.clientY - rect.top) / rect.height - 0.5;
+  heroRight.querySelectorAll('.geo').forEach((geo, i) => {
+    const depth = (i + 1) * 8;
+    geo.style.transform = geo.style.transform.replace(/translate\([^)]*\)/, '') ;
+    geo.style.transform += ` translate(${x * depth}px, ${y * depth}px)`;
+  });
+  heroRight.querySelectorAll('.dot').forEach((dot, i) => {
+    const depth = (i + 1) * 12;
+    dot.style.transform = `translate(${x * depth}px, ${y * depth}px) scale(${dot.classList.contains('dot-1') ? 1 : 1})`;
+  });
+});
+</script>
+
+</body>
+</html>
